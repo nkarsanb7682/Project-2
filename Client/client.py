@@ -7,7 +7,7 @@
         (Feel free to use more or less, this
         is provided as a sanity check)
 
-    Put your team members' names:
+    Put your team members' names: Nathan Reed, Michelle Tran
 
 
 
