@@ -53,7 +53,8 @@ def encrypt_message(message, session_key):
 
 # Decrypts the message using AES. Same as server function
 def decrypt_message(message, session_key):
-    # TODO: Implement this function
+    # CBC: each block of plaintext is XOR w/previous ciphertext block before being encrypted
+    # "new" creates new AES cipher
     dec = AES.new(session_key, AES.MODE_CBC,iv)
     retrun dec.decrypt(message)
     pass
