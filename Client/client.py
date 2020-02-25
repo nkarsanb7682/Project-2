@@ -15,6 +15,7 @@
 
 import socket
 import os
+from Crypto.Cipher import AES
 
 
 host = "localhost"
@@ -44,13 +45,17 @@ def encrypt_handshake(session_key):
 
 # Encrypts the message using AES. Same as server function
 def encrypt_message(message, session_key):
-    # TODO: Implement this function
+    # CBC: each block of plaintext is XOR w/previous ciphertext block before being encrypted
+    # "new" creates new AES cipher
+    enc = AES.new(session_key, AES.MODE_CBC,iv)
+    retrun enc.encrypt(message)
     pass
-
 
 # Decrypts the message using AES. Same as server function
 def decrypt_message(message, session_key):
     # TODO: Implement this function
+    dec = AES.new(session_key, AES.MODE_CBC,iv)
+    retrun dec.decrypt(message)
     pass
 
 
