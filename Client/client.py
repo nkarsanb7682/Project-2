@@ -48,7 +48,7 @@ def encrypt_message(message, session_key):
     # CBC: each block of plaintext is XOR w/previous ciphertext block before being encrypted
     # "new" creates new AES cipher
     enc = AES.new(session_key, AES.MODE_CBC,iv)
-    retrun enc.encrypt(message)
+    return enc.encrypt(message)
     pass
 
 # Decrypts the message using AES. Same as server function
@@ -56,7 +56,7 @@ def decrypt_message(message, session_key):
     # CBC: each block of plaintext is XOR w/previous ciphertext block before being encrypted
     # "new" creates new AES cipher
     dec = AES.new(session_key, AES.MODE_CBC,iv)
-    retrun dec.decrypt(message)
+    return dec.decrypt(message)
     pass
 
 
