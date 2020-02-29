@@ -7,7 +7,7 @@
         (Feel free to use more or less, this
         is provided as a sanity check)
 
-    Put your team members' names: Nathan Reed, Michelle Tran
+    Put your team members' names: Nathan Reed, Michelle Tran, Neel Karsanbhai
 
 
 
@@ -103,12 +103,12 @@ def main():
 
         # TODO: Encrypt message and send to server
         encryptMessage = encrypt_message(pad_message(message), session_key)
-        send_message(sock, encryptMessage) 
+        send_message(sock, encryptMessage)
 
         # TODO: Receive and decrypt response from server
         receiveMessage = receive_message(sock)
         msg = decrypt_message(receiveMessage, session_key)
-        
+
     finally:
         print('closing socket')
         sock.close()
