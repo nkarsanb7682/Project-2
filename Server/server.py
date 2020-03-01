@@ -72,7 +72,8 @@ def verify_hash(user, password):
             line = line.split("\t")
             if line[0] == user:
                 # TODO: Generate the hashed password
-                # hashed_password =
+                salt = line[1]
+                hashed_password = hashlib.sha256((str(salt) + password).encode())
                 return hashed_password == line[2]
         reader.close()
     except FileNotFoundError:
@@ -110,11 +111,16 @@ def main():
                 ciphertext_message = receive_message(connection)
 
                 # TODO: Decrypt message from client
-
+                decryptedMsg = decrypt_message(ciphertext_message, session_key)
                 # TODO: Split response from user into the username and password
-
+                splitResponse = decryptedMsg.split() #Array with user, salt, and
+                                                     #hashed password in that order
+                username = splitResponse[0]
+                pwd = splitResponse[2]
+                userExists = verify_hash(username, pwd)
                 # TODO: Encrypt response to client
-
+                encr = AES.new(plaintext_key, AES.MODE_CBC,iv)
+                ciphertext_response = enc.encrypt(encr)
                 # Send encrypted response
                 send_message(connection, ciphertext_response)
             finally:
