@@ -27,7 +27,7 @@ def pad_message(message):
 # Write a function that decrypts a message using the server's private key
 def decrypt_key(session_key):
     # TODO: Implement this function
-    
+
     pass
 
 
@@ -35,7 +35,7 @@ def decrypt_key(session_key):
 def decrypt_message(client_message, session_key):
     # TODO: Implement this function
     dec = AES.new(session_key, AES.MODE_CBC,iv)
-    retrun dec.decrypt(message)
+    retrun dec.decrypt(client_message)
     pass
 
 

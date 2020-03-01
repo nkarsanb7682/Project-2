@@ -40,6 +40,7 @@ def generate_key():
 # key and return the value
 def encrypt_handshake(session_key):
     # TODO: Implement this function
+    return AES.new(generate_key(), AES.MODE_CBC, iv)
     pass
 
 
