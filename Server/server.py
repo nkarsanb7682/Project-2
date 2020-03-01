@@ -35,7 +35,7 @@ def decrypt_key(session_key):
 def decrypt_message(client_message, session_key):
     # TODO: Implement this function
     dec = AES.new(session_key, AES.MODE_CBC,iv)
-    retrun dec.decrypt(client_message)
+    return dec.decrypt(client_message)
     pass
 
 
@@ -43,7 +43,7 @@ def decrypt_message(client_message, session_key):
 def encrypt_message(message, session_key):
     # TODO: Implement this function
     enc = AES.new(session_key, AES.MODE_CBC,iv)
-    retrun enc.encrypt(message)
+    return enc.encrypt(message)
     pass
 
 
