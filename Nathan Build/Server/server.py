@@ -54,7 +54,6 @@ def decrypt_key(session_key):
 def decrypt_message(client_message, session_key):
     # TODO: Implement this function
     dec = AES.new(session_key, AES.MODE_ECB)
-    print(dec.decrypt(client_message))
     return dec.decrypt(client_message)
     pass
 
@@ -90,14 +89,11 @@ def verify_hash(user, password):
         reader = open("../passfile.txt", 'r')
         for line in reader.read().split('\n'):
             line = line.split("\t")
-            print(user.decode() == line[0])
             if line[0] == user.decode():
                 # TODO: Generate the hashed password
                 salt = line[1]
-                print(salt)
-                hashed_password = hashlib.sha256((salt + password.decode()).encode())
-                print(hashed_password)
-                return hashed_password == line[2]
+                hashed_password = hashlib.sha256((str(salt) + password.decode()).encode())
+                return str(hashed_password.digest()) == line[2]
         reader.close()
     except FileNotFoundError:
         return False
@@ -128,19 +124,17 @@ def main():
 
                 # Decrypt key from client
                 plaintext_key = decrypt_key(encrypted_key)
-                print(plaintext_key)
                 # Receive encrypted message from client
                 ciphertext_message = receive_message(connection)
 
                 # TODO: Decrypt message from client
                 decryptedMsg = decrypt_message(ciphertext_message, plaintext_key)
+                print(decryptedMsg.decode().rstrip())
                 # TODO: Split response from user into the username and password
                 splitResponse = decryptedMsg.rstrip().split() #Array with user, salt, and
                                                      #hashed password in that order
                 username = splitResponse[0]
                 pwd = splitResponse[1]
-                print(username)
-                print(pwd)
                 userExists = verify_hash(username, pwd)
                 response = ""
                 if(userExists):

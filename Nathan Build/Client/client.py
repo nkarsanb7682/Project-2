@@ -100,7 +100,6 @@ def main():
 
         # Generate random AES key
         key = generate_key()
-        print(key)
         # Encrypt the session key using server's public key
         encrypted_key = encrypt_handshake(key)
 
@@ -119,7 +118,10 @@ def main():
         # TODO: Receive and decrypt response from server
         receiveMessage = receive_message(sock)
         msg = decrypt_message(receiveMessage, key)
-        print(msg)
+        if msg.decode().rstrip() != "authenticated":
+            print("username or password incorrect")
+        else:
+            print("user successfully authenticated!")
 
     finally:
         print('closing socket')
